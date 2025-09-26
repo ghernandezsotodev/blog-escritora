@@ -2,11 +2,14 @@
 
 'use client';
 
+// 1. IMPORTAMOS LOS TIPOS NECESARIOS PARA METADATA
+import type { Metadata } from 'next';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Datos de prueba para los libros
+// 2. MOVEMOS EL ARRAY DE DATOS FUERA DEL COMPONENTE
+// Esto lo convierte en una constante a nivel de módulo, accesible por el servidor.
 const allBooks = [
     {
       title: "Cuatro Perros",
@@ -29,7 +32,25 @@ const allBooks = [
     // Añade el resto de tus libros aquí con sus descripciones
 ];
 
+// 3. AÑADIMOS LA FUNCIÓN generateMetadata
+// Esta función se ejecuta en el servidor antes de renderizar la página.
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const book = allBooks.find(b => b.slug === params.slug);
 
+  if (!book) {
+    return {
+      title: "Libro no encontrado | María Esperanza Gallegos",
+    };
+  }
+
+  return {
+    title: `${book.title} | María Esperanza Gallegos`,
+    description: book.description.substring(0, 160), // Usamos los primeros 160 caracteres para la descripción de Google
+  };
+}
+
+
+// El componente de la página se mantiene como un componente de cliente
 export default function BookDetailPage() {
   const params = useParams();
   const slug = params.slug;
@@ -74,30 +95,17 @@ export default function BookDetailPage() {
             <p className="text-gray-500">(Próximamente en librerías)</p>
           </div>
 
-          {/* ===== INICIO DEL CAMBIO ===== */}
           <div className="mt-12">
             <Link 
               href="/obras" 
               className="inline-flex items-center gap-2 text-gray-700 hover:text-black group transition-colors"
             >
-              {/* Esta es la flecha SVG */}
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 group-hover:-translate-x-1 transition-transform" 
-                viewBox="0 0 20 20" 
-                fill="currentColor"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" 
-                  clipRule="evenodd" 
-                />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
               </svg>
               Volver a todas las obras
             </Link>
           </div>
-          {/* ===== FIN DEL CAMBIO ===== */}
-
         </div>
       </div>
     </div>
