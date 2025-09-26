@@ -25,8 +25,13 @@ const allBooks = [
     },
 ];
 
-// La función de metadata puede vivir aquí sin problemas
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+// Definimos un 'type' para las props de forma explícita
+type Props = {
+  params: { slug: string };
+};
+
+// La función de metadata ahora usa el 'type' que definimos
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const book = allBooks.find(b => b.slug === params.slug);
   if (!book) {
     return { title: "Libro no encontrado" };
@@ -37,11 +42,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-// Este es ahora un Componente de Servidor. No tiene 'use client'.
-export default function BookDetailPage({ params }: { params: { slug: string } }) {
-  // Busca los datos del libro en el servidor
+// El componente de la página también usa el 'type'
+export default function BookDetailPage({ params }: Props) {
   const book = allBooks.find(b => b.slug === params.slug);
-
-  // Pasa los datos al componente de cliente para que los renderice
   return <BookDetailClient book={book} />;
 }
