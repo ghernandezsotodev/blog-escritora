@@ -37,16 +37,7 @@ const allBooks = [
     imageUrl: "/images/cover-6.jpg",
     slug: "hermano-perro-hermano-gato",
   },
-  //   {
-  //   title: "Libro de Prueba 7",
-  //   imageUrl: "/images/prueba.jpg",
-  //   slug: "libro-de-prueba-7",
-  // },
-  //   {
-  //   title: "Libro de Prueba 8",
-  //   imageUrl: "/images/prueba.jpg",
-  //   slug: "libro-de-prueba-8",
-  // },
+
 ];
 
 // Reutilizamos las mismas variantes de animación que en la home

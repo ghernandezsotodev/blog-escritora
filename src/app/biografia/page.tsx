@@ -27,9 +27,9 @@ export default function BiografiaPage() {
           />
         </div>
 
-        {/* INICIO DE LOS CAMBIOS */}
+        
         <div className="max-w-3xl mx-auto">
-          {/* Ya no usamos la clase 'prose' aquí */}
+          
           <article>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-800 mb-4">
               Mi Viaje con las Palabras
@@ -48,7 +48,7 @@ export default function BiografiaPage() {
             </p>
           </article>
         </div>
-        {/* FIN DE LOS CAMBIOS */}
+        
 
         <div className="mt-16">
           <h3 className="text-2xl font-serif font-bold text-center text-gray-800 mb-8">

@@ -14,7 +14,7 @@ export default function ContactoPage() {
     setResult("Enviando....");
     const formData = new FormData(event.currentTarget);
 
-    // DEBES REEMPLAZAR ESTA CLAVE CON LA TUYA DE WEB3FORMS
+    // REEMPLAZAR ESTA CLAVE CON LA DE WEB3FORMS
     formData.append("access_key", "TU_ACCESS_KEY_DE_WEB3FORMS_AQUI");
 
     const response = await fetch("https://api.web3forms.com/submit", {
@@ -81,7 +81,7 @@ export default function ContactoPage() {
                     <strong className="block text-gray-800">Email (Prensa/Profesional):</strong>
                     <a href="mailto:agente@ejemplo.com" className="text-gray-600 hover:underline">agente@ejemplo.com</a>
                 </p>
-                {/* Reemplaza '#' con los enlaces reales */}
+                
                 <p>
                     <strong className="block text-gray-800">Redes Sociales:</strong>
                     <a href="#" className="text-gray-600 hover:underline">Instagram</a>, <a href="#" className="text-gray-600 hover:underline">Twitter/X</a>

@@ -6,7 +6,7 @@ import Link from 'next/link';
 interface BookCardProps {
   title: string;
   imageUrl: string;
-  slug: string; // La URL amigable del libro, ej: "el-eco-del-silencio"
+  slug: string;
 }
 
 export default function BookCard({ title, imageUrl, slug }: BookCardProps) {
